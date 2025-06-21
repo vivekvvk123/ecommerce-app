@@ -66,9 +66,16 @@ const ShopContextProvider = (props) => {
     //     console.log(cartItems)
     // },[cartItems])
 
+
+    // cartItem looks like 
+    // { "abc123": 
+    //      { "M": 2, "L": 1 }, 
+    // "xyz456": 
+    //      { "S": 1 } }
+
     const getCartAmount = ()=>{
         let totalAmount =0;
-        for(let items in cartItems){
+        for(let items in cartItems){ 
             let itemInfo = products.find((product)=> product._id === items); 
             for(const size in cartItems[items]){
                 if(cartItems[items][size] > 0){
