@@ -65,7 +65,7 @@ function Cart() {
         <div className='w-full sm:w-[450px]'>
           <CartTotal />
           <div className='w-full text-end'>
-            <button onClick={()=>navigate('/place-order')} className='bg-black text-white text-lg my-8 px-8 py-3 active:bg-gray-700 cursor-pointer' >Proceed to Checkout</button>
+            <button onClick={()=>navigate('/place-order')} className='bg-black text-white text-sm my-8 px-8 py-3 active:bg-gray-700 cursor-pointer' >Proceed to Checkout</button>
           </div>
         </div>
 
