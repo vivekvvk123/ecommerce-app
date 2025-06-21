@@ -23,11 +23,17 @@ function CartTotal() {
             <div className='flex justify-between'>
                 <p>Shipping Fee</p>
                 <p>{currency}
-                    {getCartAmount() === 0 ? 0.00 : getCartAmount()>=400 ? 0.00 : delivery_fee}
+                    {getCartAmount() === 0 ? 0.00 : getCartAmount()>=500 ? 0.00 : delivery_fee}
                 </p>
             </div>
             {
-                getCartAmount() >= 400 ? 
+                getCartAmount() < 500 && getCartAmount() > 0 ? 
+                <div>
+                    <p className='text-red-500'>Add more items worth ₹{500 - getCartAmount()} to be eligible for free delivery!</p>
+                </div> : null  
+            }
+            {
+                getCartAmount() >= 500 ? 
                 <div>
                     <p className='text-green-500'> Congratulations 🎉 you are eligible for free delivery!</p>
                 </div> : null
@@ -37,7 +43,7 @@ function CartTotal() {
 
             <div className='flex justify-between text-xl'>
                 <b>Total</b>
-                <b>{currency} {getCartAmount() === 0 ? 0.00 : getCartAmount() >= 400 ? getCartAmount() : getCartAmount() + delivery_fee}.00</b>
+                <b>{currency} {getCartAmount() === 0 ? 0.00 : getCartAmount() >= 500 ? getCartAmount() : getCartAmount() + delivery_fee}.00</b>
             </div>
 
         </div>
