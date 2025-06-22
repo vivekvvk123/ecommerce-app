@@ -1,4 +1,5 @@
 import {v2 as cloudinary} from 'cloudinary';
+import productModel from '../models/product.model.js';
 
 // Function for add product
 const addProduct = async (req,res) => {
@@ -17,11 +18,23 @@ const addProduct = async (req,res) => {
                 return result.secure_url;
             })
         )
+        // Save product data to database
+        const productData = {
+            name,
+            description,
+            category,
+            price: Number(price),
+            subCategory,
+            bestSeller:  bestSeller ==='true' ? true: false,
+            sizes: JSON.parse(sizes),
+            image: imageUrls,
+            date: Date.now() 
+        }
 
+        console.log(productData)
+        const product = await productModel.create(productData); // .create method does not need save() method
 
-        console.log(name, price, description, category, subCategory, bestSeller, sizes)
-        console.log(imageUrls)
-        res.json({})
+        res.json({success: true, message: 'Product added successfully'});
     }
     catch(error){
         console.error(error);
@@ -31,18 +44,41 @@ const addProduct = async (req,res) => {
 
 // Function for list product
 const listProduct = async (req,res) => {
-
+    try{
+        const products = await productModel.find({});
+        res.json({success: true, products});
+    }
+    catch(error){
+        console.error(error);
+        res.json({success: false, message: error.message})
+    }
 }
 
 // Function for remove product
 const removeProduct = async (req,res) => {
+    try{
+        await productModel.findByIdAndDelete(req.body.id); 
+        res.json({success: true, message: 'Product removed successfully'});
+    }
+    catch(error){
+        console.error(error);
+        res.json({success: false, message: error.message})
+    }
 
 }
 
 
-// Function for single product info
+// Function for single product info - function to get single product using productId
 const singleProduct = async (req,res) => {
-
+    try{
+        const {productId} = req.body;
+        const product = await productModel.findById(productId);
+        res.json({success: true, product});
+    }
+    catch(error){
+        console.error(error);
+        res.json({success: false, message: error.message})
+    }
 }
 
 export { addProduct, listProduct, removeProduct, singleProduct };

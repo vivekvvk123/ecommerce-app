@@ -7,7 +7,9 @@ const createToken = (id)=>{
     return jwt.sign(
         {id},
         process.env.JWT_SECRET,
-        {expiresIn: '3d'})
+        {expiresIn: '3d'},
+        
+    )
 }
 
 
@@ -83,7 +85,23 @@ const registerUser = async (req,res)=>{
 
 // Route for admin login
 const adminLogin = async (req,res) =>{
-
+    try{
+        const {email, password} = req.body;
+        // Check if admin credentials are correct
+        if(email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD){
+            // Generate JWT token for admin
+            // const token = jwt.sign(email+password,process.env.JWT_SECRET);
+            const token = createToken(email + password);
+            res.json({success: true, token});
+        }
+        else{
+            res.json({success: false, message: "Invalid admin credentials"});
+        }
+    }
+    catch(error){
+        console.error( error);
+        res.json({success: false, message: error.message});
+    }
 }
 
 export { loginUser, registerUser, adminLogin };
