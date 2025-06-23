@@ -34,7 +34,7 @@ const addProduct = async (req,res) => {
         console.log(productData)
         const product = await productModel.create(productData); // .create method does not need save() method
 
-        res.json({success: true, message: 'Product added successfully'});
+        res.json({success: true, message: 'Product added'});
     }
     catch(error){
         console.error(error);
