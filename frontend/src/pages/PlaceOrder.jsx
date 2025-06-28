@@ -4,6 +4,7 @@ import CartTotal from '../components/CartTotal'
 import { assets } from '../assets/assets'
 import { ShopContext } from '../context/ShopContext';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 function PlaceOrder() {
 
@@ -60,11 +61,22 @@ function PlaceOrder() {
                 if(response.data.success){
                     setCartItems({});
                     navigate('/orders');
-                }
-                else{
+                }else{
                     toast.error(response.data.message);
                 }
                 break;
+            case 'stripe':
+              const stripeResponse = await axios.post(backendUrl + '/api/order/stripe', orderData, {headers:{token}});
+              console.log(stripeResponse.data);
+              if(stripeResponse.data.success){
+                const {session_url} = stripeResponse.data;
+                window.location.replace(session_url);
+              }
+              else{
+                toast.error(stripeResponse.data.message);
+              }
+                break;
+
             default:
                 break;
         }

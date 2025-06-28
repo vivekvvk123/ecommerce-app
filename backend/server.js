@@ -1,6 +1,6 @@
 import express from 'express'; // Added: type: "module" for import syntax
 import cors from 'cors';
-import dotenv from 'dotenv';
+import 'dotenv/config';
 import connectDB from './config/mongodb.js';
 import connectCloudinary from './config/cloudinary.js';
 import userRouter from './routes/user.route.js';
@@ -8,7 +8,7 @@ import productRouter from './routes/product.route.js';
 import cartRouter from './routes/cart.route.js';
 import orderRouter from './routes/order.route.js';
 
-dotenv.config();
+// dotenv.config();
 
 //App config
 const app = express();
