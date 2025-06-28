@@ -8,8 +8,8 @@ function ProductItem({id, image, name, price}) {
 
 
   return (
-    <div>
-        <Link to={`/product/${id}`} className='text-gray-700 cursor-pointer'>
+    <div className='hover:shadow-md p-2 rounded-md'>
+        <Link to={`/product/${id}`} className='text-gray-700 cursor-pointer '>
         <div className='overflow-hidden'>
             <img className='hover:scale-110 transition ease-in-out' src={image[0]} alt="" />
         </div>

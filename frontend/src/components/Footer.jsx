@@ -8,26 +8,27 @@ function Footer() {
             <div>
                 <img src={assets.main_logo} className='mb-5 w-32' alt="" />
                 <p className='w-full md:w-2/3 text-gray-600'>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum.
+                    Your premier destination for quality fashion and style. We bring you the latest trends 
+                    with exceptional quality and unbeatable prices. Shop with confidence at Velvette.
                 </p>
             </div>
 
             <div>
                 <p className='text-xl font-medium mb-4 '>COMPANY</p>
                 <ul className='flex flex-col gap-1 text-gray-600'>
+                    <li>About Us</li>
                     <li>Careers</li>
-                    <li>Delivery</li>
                     <li>Privacy Policy</li>
+                    <li>Terms & Conditions</li>
                 </ul>
             </div>
 
             <div>
                 <p className='text-xl font-medium mb-5'>GET IN TOUCH</p>
                 <ul className='flex flex-col gap-1 text-gray-600'>
-                    <li>+91 1234567890</li>
+                    <li>+91 987654-43210</li>
                     <li>contact@velvette.com</li>
-                    <li></li>
+                    <li>Mon-Sat: 9AM-6PM</li>
                 </ul>
             </div>
 
