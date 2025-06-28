@@ -27,7 +27,7 @@ function App() {
       : 
         <>
           <Navbar setToken={setToken} />
-          <hr />
+          <hr className='border-gray-300'/>
           <div className='flex w-full'>
             <Sidebar />
             <div className='w-[70%] mx-auto ml-[max(5vw,25px)] my-8 text-gray-600 text-base'>

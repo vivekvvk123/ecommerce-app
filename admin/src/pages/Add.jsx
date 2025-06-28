@@ -19,6 +19,12 @@ function Add({token}) {
 
     const onSubmitHandler = async(e) => {
         e.preventDefault();
+
+        if(sizes.length === 0){
+            toast.error('Please select at least one size');
+            return;
+        }
+
         try{
             const formData = new FormData();
             formData.append('name', name);

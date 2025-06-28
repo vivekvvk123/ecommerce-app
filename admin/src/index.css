@@ -13,8 +13,8 @@ select,textarea,input{
 }
 
 .active{
-  background-color: #6678d1;
-  color: #ffffff;
+  background-color: #e6e6e6;
+  color: #000000;
   border-color: #182134;
 }
 
