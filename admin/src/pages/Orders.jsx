@@ -14,7 +14,7 @@ function Orders({token}) {
     if(!token) return;
     try{
       const response = await axios.post(backendUrl + '/api/order/list', {}, {headers:{token}});
-      console.log(response.data)
+      // console.log(response.data)
         if(response.data.success){
           setOrders(response.data.orders);
         }
