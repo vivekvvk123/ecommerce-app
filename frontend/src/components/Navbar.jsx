@@ -83,7 +83,7 @@ function Navbar() {
           </div>
           }
 
-            <img onClick={()=>setVisible(true)} src={assets.menu_icon} className='w-5 cursor-pointer sm:hidden' alt="" />
+            <img onClick={()=>setVisible(true)} src={assets.menu_icon} className='w-5 cursor-pointer sm:hidden mr-2' alt="" />
             
             {/* {visible && (
             <div className="fixed inset-0 z-[60] sm:hidden">
