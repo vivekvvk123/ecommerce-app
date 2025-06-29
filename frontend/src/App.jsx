@@ -19,6 +19,8 @@ import Verify from './pages/Verify'
 function App() {
 
   return (
+    <div>
+
     <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
       <ToastContainer />
       <Navbar />
@@ -35,7 +37,7 @@ function App() {
         <Route path='/orders' element={<Orders />}/>
         <Route path='/verify' element={<Verify />}/>
       </Routes>
-
+    </div>
       <Footer />
     </div>
   )

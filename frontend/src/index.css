@@ -16,6 +16,39 @@
   display: none;
 }
 
+:root{
+  /* position: absolute;
+  top: 0;
+  z-index: -2;
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+  background-image: radial-gradient(
+    ellipse 80% 80% at 50% -20%,
+    rgba(120, 119, 198, 0.3),
+    rgba(255, 255, 255, 0)
+  ); */
+  background-color: white;
+  background-image: radial-gradient(
+    60% 120% at 50% 50%,
+    hsla(0, 0%, 100%, 0) 0%,
+    rgba(252, 205, 238, 0.5) 100%
+  );
+  background-attachment: fixed; /* This ensures the background stays fixed */
+  background-repeat: no-repeat;
+  background-size: 100% 100vh; /* Cover full viewport height */
+  min-height: 100vh;
+}
+
+.footer-gradient{
+  background: #bcbce6;
+background: linear-gradient(0deg, rgba(188, 188, 230, 1) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+/* .footer-gradient{
+  background: #caa4fc;
+background: linear-gradient(0deg, rgb(188, 188, 237) 0%, rgb(209, 177, 255) 40%, rgba(255, 255, 255, 0.108) 85%);
+} */
 
 /* 
 :root {

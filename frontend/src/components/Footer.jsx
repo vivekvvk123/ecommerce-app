@@ -3,7 +3,7 @@ import { assets } from '../assets/assets'
 
 function Footer() {
   return (
-    <div>
+    <div className='px-[5vw] py-1 mt-24 md:px-[7vw] lg:px-[9vw]  footer-gradient'>
         <div className='flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 mt-40 text-sm'>
             <div>
                 <img src={assets.main_logo} className='mb-5 w-32' alt="" />
