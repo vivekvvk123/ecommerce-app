@@ -94,6 +94,16 @@ function Navbar() {
               <NavLink onClick={()=>setVisible(false)} className={({isActive})=> `${isActive ? 'bg-zinc-900 text-white' : ''} py-2 pl-6 border`} to='/collection'>Collection</NavLink>
               <NavLink onClick={()=>setVisible(false)} className={({isActive})=> `${isActive ? 'bg-zinc-900 text-white' : ''} py-2 pl-6 border`} to='/about'>About</NavLink>
               <NavLink onClick={()=>setVisible(false)} className={({isActive})=> `${isActive ? 'bg-zinc-900 text-white' : ''} py-2 pl-6 border`} to='/contact'>Contact</NavLink>
+              {
+                token ? 
+                <>
+                  <NavLink onClick={()=>setVisible(false)} className={({isActive})=> `${isActive ? 'bg-zinc-900 text-white' : ''} py-2 pl-6 border`} to='/orders'>My Orders</NavLink>
+                  <NavLink onClick={()=>{setVisible(false); logout()}} className={({isActive})=> `${isActive ? 'bg-zinc-900 text-white' : ''} py-2 pl-6 border`} to='/login'>Logout</NavLink>
+                </>
+                :
+                <NavLink onClick={()=>setVisible(false)} className={({isActive})=> `${isActive ? 'bg-zinc-900 text-white' : ''} py-2 pl-6 border`} to='/login'>Login / Sign Up</NavLink>
+                
+              }
 
           </div>
         </div>
