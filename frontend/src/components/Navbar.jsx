@@ -18,7 +18,7 @@ function Navbar() {
 
   return (
     <>
-      <div className='px-[9%] shadow-md sticky top-0 z-50 backdrop-blur-2xl'>
+      <div className='px-2 sm:px-4 md:px-8 lg:px-32  shadow-md sticky top-0 z-50 backdrop-blur-2xl'>
         <div className='flex items-center justify-between py-2 font-medium border-b border-gray-300'>
           <div>
             <Link to="/"><img src={assets.main_logo} className='w-32' alt="" /></Link>
