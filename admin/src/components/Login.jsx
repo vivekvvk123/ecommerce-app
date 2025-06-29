@@ -3,6 +3,9 @@ import { backendUrl } from '../App';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
+const clientURL = import.meta.env.VITE_CLIENT_URL;
+
+
 function Login({setToken}) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -39,8 +42,9 @@ function Login({setToken}) {
 
   return (
     <div className='min-h-screen flex items-center justify-center'>
-        <div className='bg-white shadow-md rounded-lg px-10 py-8 max-w-md'>
+        <div className='bg-white shadow-md rounded-lg px-10 py-10 max-w-md'>
             <h1 className='text-2xl font-bold mb-4'>Admin Panel</h1>
+            
             <form onSubmit={onSubmitHandler}>
                 <div className='mb-3 min-w-72'>
                 <p className='text-sm font-medium text-gray-700 mb-2'>Email Address</p>
@@ -52,7 +56,11 @@ function Login({setToken}) {
                 </div>
 
                 <button className='mt-2 w-full py-2 px-4 rounded-md text-white bg-black' type='submit'>Login</button>
+
             </form>
+            <div className='flex items-center justify-center'>
+              <button onClick={()=>window.location.href=clientURL} className='mt-2 hover:text-gray-600 text-sm' type='submit'>Not an Admin ?</button>
+            </div>
         </div>
     </div>
   )
