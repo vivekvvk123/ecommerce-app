@@ -6,6 +6,7 @@ import {toast} from 'react-toastify';
 function Login() {
 
   const [currentState, setCurrentState] = useState('Login');
+  const [isLoading, setIsLoading] = useState(false);
 
   const {token, setToken, navigate, backendUrl} = useContext(ShopContext);
   const [name, setName] = useState('');
@@ -15,6 +16,7 @@ function Login() {
 
   const onSubmitHandler = async(e)=>{
     e.preventDefault();
+    setIsLoading(true);
     try {
           if(currentState === 'Sign Up'){
             const response = await axios.post(backendUrl + '/api/user/register', {name, email, password});
@@ -38,10 +40,14 @@ function Login() {
               toast.error(response.data.message);
             }
           }
-      
-    } catch (error) {
+        
+    } 
+    catch (error) {
       console.log(error);
       toast.error(error.message);
+    }
+    finally {
+      setIsLoading(false);
     }
   }
 
@@ -73,7 +79,11 @@ function Login() {
         }
       </div>
 
-      <button className='bg-black text-white font-light px-8 py-2 mt-4 rounded-3xl '>{currentState === 'Login' ? 'Sign In' : 'Sign Up'}</button>
+      <button disabled={isLoading} 
+      className={`${isLoading ? 'bg-gray-600 cursor-not-allowed' : 'bg-black'} text-white font-light px-8 py-2 mt-4 rounded-3xl flex items-center justify-center gap-3 transition-colors`} >
+        {isLoading && (<div className='animate-spin rounded-full h-4 w-4 border-white border-b-2'></div>)}
+        {currentState === 'Login' ? 'Sign In' : 'Sign Up'}
+      </button>
        
     </form>
   )
