@@ -65,12 +65,12 @@ function Navbar() {
           </div>
           }
         </div>
+      </>}
 
         <Link to="/cart" className='relative'>
           <img src={assets.cart_icon} className='w-5 min-w-5' alt="" />
           <p className='absolute -right-[10px] top-[10px] w-5 text-center bg-black text-white aspect-square rounded-full text-[12px]'>{getCartCount()}</p>
         </Link>
-      </>}
 
       {!token && 
       <div className='hidden sm:flex gap-2'>
