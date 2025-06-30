@@ -28,7 +28,7 @@ const LoadingWrapper = ({ children }) => {
 
   useEffect(() => {
     setIsNavigating(true);
-    const timer = setTimeout(() => setIsNavigating(false), 200);
+    const timer = setTimeout(() => setIsNavigating(false), 400);
     return () => clearTimeout(timer);
   }, [location.pathname]);
 

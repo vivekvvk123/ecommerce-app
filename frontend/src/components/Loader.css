@@ -1,6 +1,6 @@
 .loader {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   display: inline-block;
   position: relative;
@@ -21,16 +21,16 @@
   margin: auto;
   border: 3px solid;
   border-color: transparent transparent #FF3D00 #FF3D00;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   box-sizing: border-box;
   animation: rotationBack 0.5s linear infinite;
   transform-origin: center center;
 }
 .loader::before {
-  width: 32px;
-  height: 32px;
+  width: 25px;
+  height: 25px;
   border-color: #6aff00 #52ff02 transparent transparent;
   animation: rotation 1.5s linear infinite;
 }
