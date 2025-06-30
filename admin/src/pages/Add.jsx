@@ -16,9 +16,11 @@ function Add({token}) {
     const [subCategory, setSubCategory] = useState('Topwear');
     const [bestSeller, setBestSeller] = useState(false);
     const [sizes, setSizes] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const onSubmitHandler = async(e) => {
         e.preventDefault();
+        setIsLoading(true);
 
         if(sizes.length === 0){
             toast.error('Please select at least one size');
@@ -65,6 +67,9 @@ function Add({token}) {
         catch(err){
             console.error(err);
             toast.error('Something went wrong while adding the product.');
+        }
+        finally{
+            setIsLoading(false);
         }
         
     }
@@ -125,7 +130,7 @@ function Add({token}) {
                 <input onChange={(e)=>setPrice(e.target.value)} value={price} className='w-full px-3 py-2 sm:w-[180px]' type="number" placeholder='enter price' required />
             </div>
         </div>
-        <div className='flex gap-3 mb-2'>
+        <div className='flex flex-wrap gap-3 mb-2 '>
             <p className='mb-2'>Product Sizes</p>
             <div onClick={()=>setSizes(prev => prev.includes('S') ? prev.filter(item => item !== 'S') : [...prev, 'S'])}>
                 <p className={`${sizes.includes('S') ? 'bg-gray-400' : 'bg-slate-200'} px-3 py-1 cursor-pointer`}>S</p>
@@ -148,7 +153,8 @@ function Add({token}) {
             <label className='cursor-pointer' htmlFor="bestSeller">Add to Bestseller</label>
         </div>
 
-        <button className='w-28 py-3 mt-4 bg-black text-white rounded' type="submit">Add</button>
+        <button className={`${isLoading ? 'bg-gray-600 cursor-not-allowed' : 'bg-black'} flex items-center justify-center gap-4 w-28 py-3 mt-4 text-white rounded`} type="submit">
+            {isLoading && (<div className='animate-spin rounded-full h-4 w-4 border-white border-b-2'></div>)}Add</button>
     </form>
   )
 }

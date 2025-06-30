@@ -2,9 +2,11 @@ import React, { useState, useContext } from "react";
 import { assets } from "../assets/assets.js";
 import { Link, NavLink } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext.jsx";
+import Loader from "./Loader";
 
 function Navbar() {
   const [visible, setVisible] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   const {
     setShowSearch,
@@ -15,15 +17,27 @@ function Navbar() {
     setCartItems,
   } = useContext(ShopContext);
   const adminURL = import.meta.env.VITE_ADMIN_URL;
+
   const logout = () => {
-    localStorage.removeItem("token");
-    setToken("");
-    setCartItems({});
-    navigate("/login");
+    setIsLoggingOut(true);
+
+    setTimeout(() => {
+      localStorage.removeItem("token");
+      setToken("");
+      setCartItems({});
+      setIsLoggingOut(false);
+      navigate("/login");
+    }, 1000);
   };
 
   return (
     <>
+      {isLoggingOut && (
+        <div className="fixed inset-0 bg-white flex items-center justify-center z-[100]">
+          <Loader />
+        </div>
+      )}
+
       <div className="px-2 mb-2 sm:px-4 md:px-8 lg:px-32  shadow-md sticky top-0 z-50 backdrop-blur-2xl">
         <div className="flex items-center justify-between py-2 font-medium border-b border-gray-300">
           <div>
@@ -120,7 +134,9 @@ function Navbar() {
                         </p>
                         <p
                           onClick={logout}
-                          className="cursor-pointer hover:text-black"
+                          className={`cursor-pointer hover:text-black ${
+                            isLoggingOut ? "opacity-50 pointer-events-none" : ""
+                          }`}
                         >
                           Logout
                         </p>
@@ -290,7 +306,9 @@ function Navbar() {
                       setVisible(false);
                       logout();
                     }}
-                    className="w-full text-left py-4 px-6 border-b text-lg text-gray-700 hover:bg-gray-100 transition-all duration-200"
+                    className={`w-full text-left py-4 px-6 border-b text-lg text-gray-700 hover:bg-gray-100 transition-all duration-200 ${
+                      isLoggingOut ? "opacity-50 pointer-events-none" : ""
+                    }`}
                   >
                     Logout
                   </button>

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { backendUrl } from '../App'
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { RiDeleteBinFill } from "react-icons/ri";
+
 
 
 function List({token}) {
@@ -74,8 +76,8 @@ function List({token}) {
               <p>{item.name}</p>
               <p>{item.category}</p>
               <p>{currency}{item.price}</p>
-              <div className='flex justify-end md:justify-center items-center gap-2'>
-                <p onClick={()=>{removeProduct(item._id)}} className='text-right md:text-center cursor-pointer text-lg w-8 rounded-full bg-zinc-300 hover:bg-zinc-400'>X</p>
+              <div className='flex justify-end md:justify-center md:items-center gap-2 -mr-12 md:mr-0'>
+                <div onClick={()=>{removeProduct(item._id)}} className='flex items-center cursor-pointer text-xl hover:scale-125 '><RiDeleteBinFill /></div>
               </div>
             </div>
           ))
