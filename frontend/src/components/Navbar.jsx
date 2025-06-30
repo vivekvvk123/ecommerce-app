@@ -110,13 +110,13 @@ function Navbar() {
                           onClick={() => navigate("/")}
                           className="cursor-pointer hover:text-black"
                         >
-                          My Profile
+                          Profile
                         </p>
                         <p
                           onClick={() => navigate("/orders")}
                           className="cursor-pointer hover:text-black"
                         >
-                          Orders
+                          My Orders
                         </p>
                         <p
                           onClick={logout}

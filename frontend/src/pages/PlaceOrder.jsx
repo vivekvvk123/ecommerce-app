@@ -10,6 +10,7 @@ function PlaceOrder() {
 
   const [method, setMethod] = useState('cod');
   const {navigate, token,backendUrl,cartItems, setCartItems, freeDeliveryOver, delivery_fee, products, getCartAmount} = useContext(ShopContext);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -60,6 +61,7 @@ function PlaceOrder() {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       let orderItems = [];
       for (let items in cartItems) {
@@ -123,6 +125,9 @@ function PlaceOrder() {
     } catch (error) {
       console.error("Error placing order:", error);
     }
+    finally {
+      setIsLoading(false);
+    }
   };
 
 
@@ -177,7 +182,8 @@ function PlaceOrder() {
           </div>
 
           <div className='w-full text-end mt-8'>
-            <button type='submit' className='bg-black text-white py-3 px-12 text-sm '> Place Order</button>
+            <button type='submit' className={`${isLoading ? 'bg-gray-600 cursor-not-allowed' : 'bg-black'} text-white py-3 px-12 text-sm flex items-center justify-center gap-4`}>
+              {isLoading && (<div className='animate-spin rounded-full h-4 w-4 border-white border-b-2'></div>)} Place Order</button>
           </div>
 
         </div>
