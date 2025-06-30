@@ -20,7 +20,7 @@ const LoadingWrapper = ({ children }) => {
 
   useEffect(() => {
     setIsNavigating(true);
-    const timer = setTimeout(() => setIsNavigating(false), 500);
+    const timer = setTimeout(() => setIsNavigating(false), 800);
     return () => clearTimeout(timer);
   }, [location.pathname]);
 
@@ -82,7 +82,7 @@ function App() {
           <div className="flex w-full">
             <Sidebar />
             <LoadingWrapper>
-              <div className="w-[75%] mx-auto ml-[max(5vw,25px)] my-8 text-gray-600 text-base">
+              <div className="w-[80%] sm:w-[75%] mx-auto my-8 text-gray-600 text-base">
                 <Routes>
                   <Route path="/" element={<Navigate to="/add" replace />} />
                   <Route path="/add" element={<Add token={token} />} />
