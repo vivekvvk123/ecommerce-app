@@ -32,9 +32,21 @@ const LoadingWrapper = ({ children }) => {
     return () => clearTimeout(timer);
   }, [location.pathname]);
 
+  if (isNavigating) {
+    return (
+      <div className="flex items-center justify-center min-h-[60vh]">
+        <Loader />
+      </div>
+    );
+  }
+
   return (
-    <Suspense fallback={<Loader />}>
-      {isNavigating ? <Loader /> : children}
+    <Suspense fallback={
+      <div className="flex items-center justify-center min-h-[60vh]">
+        <Loader />
+      </div>
+    }>
+      {children}
     </Suspense>
   );
 };

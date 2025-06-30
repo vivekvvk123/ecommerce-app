@@ -11,6 +11,7 @@ function Cart() {
   const [cartData, setCartData] = useState([]);
 
   useEffect(()=>{
+    window.scrollTo(0,0);
     if(products.length > 0){
       const tempData =[];
       for(const item in cartItems){
@@ -30,7 +31,7 @@ function Cart() {
 
 
   return (
-    <div className='border-t pt-14 '>
+    <div className='pt-14 '>
       <div className='text-2xl mb-3'>
         <Title text1={'YOUR'} text2={'CART'}/>
       </div>
