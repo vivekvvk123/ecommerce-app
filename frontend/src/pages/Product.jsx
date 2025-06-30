@@ -29,7 +29,7 @@ function Product() {
   },[productId, products])
 
   return productData ? (
-    <div className='pt-10 transition-opacity ease-in duration-500 opacity-100'>
+    <div className='lg:pt-10 sm:pt-4 pt-2 transition-opacity ease-in duration-500 opacity-100'>
       {/*-------- Product Data--------- */}
       <div className='flex gap-12 sm:gap-12 flex-col sm:flex-row'>
         {/*------------ Product Images-------- */}

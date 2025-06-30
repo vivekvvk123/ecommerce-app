@@ -31,7 +31,7 @@ function Cart() {
 
 
   return (
-    <div className='pt-14 '>
+    <div className='lg:pt-10 sm:pt-4 pt-2 '>
       <div className='text-2xl mb-3'>
         <Title text1={'YOUR'} text2={'CART'}/>
       </div>

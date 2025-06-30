@@ -41,7 +41,7 @@ function Orders() {
 
 
   return (
-    <div className='pt-16'>
+    <div className='lg:pt-10 sm:pt-4 pt-2'>
       <div className='text-2xl'>
         <Title text1={'MY'} text2={'ORDERS'} />
       </div>

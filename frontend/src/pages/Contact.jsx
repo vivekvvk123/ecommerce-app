@@ -10,13 +10,13 @@ import { FaLinkedin } from "react-icons/fa6";
 function Contact() {
   return (
     <div>
-      <div className='text-center text-2xl pt-10'>
+      <div className='text-center text-2xl lg:pt-10 sm:pt-4 pt-2'>
         <Title text1={'CONTACT'} text2={'US'} />
       </div>
 
       <div className='my-10 flex flex-col justify-center md:flex-row gap-4 mb-28'>
-        <img className='w-full md:max-w-[480px]' src={assets.contact_img} alt="" />
-        <div className='flex flex-col justify-center items-start gap-6 w-full md:max-w-[500px] px-4 sm:px-8 md:px-10 lg:px-12'>
+        <img className='w-full max-w-[400px] max-h-[450px] p-1' src={assets.contact_img} alt="" />
+        <div className='flex flex-col justify-center items-start gap-6 w-full md:max-w-[500px] px-1 sm:px-8 md:px-10 lg:px-12'>
           <p className='font font-semibold text-gray-600 text-xl sm:mt-6 md:mt-0' >GET IN TOUCH</p>
           <p className='text-gray-500'>Crafted by- <span className='text-2xl text-black'>Vivek Bunkar</span></p>
 

@@ -69,12 +69,13 @@ function Collection() {
   },[category, subCategory, search, showSearch, products]);
 
   useEffect(()=>{
+    window.scrollTo(0,0);
     sortProducts();
   },[sortType]);
 
 
   return (
-    <div className='flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10'>
+    <div className='flex flex-col sm:flex-row gap-1 sm:gap-10 lg:pt-10 sm:pt-4 pt-2'>
       {/* Filter Options */}
       <div className='min-w-60'>
         <p onClick={()=>setShowFilter(!showFilter)} className='my-2 text-xl flex items-center cursor-pointer gap-2'>FILTERS
@@ -121,7 +122,7 @@ function Collection() {
         <div className='flex justify-between text-base sm:text-2xl mb-4'>
           <Title text1={'ALL'} text2={'COLLECTIONS'} />
           {/* Product Sort */}
-          <select onChange={(e)=>setSortType(e.target.value)} className='border-2 border-gray-300 text-sm px-2'>
+          <select onChange={(e)=>setSortType(e.target.value)} className='border-2 border-gray-300 text-sm px-2 max-h-12'>
             <option value="relevant">Sort by Relevance</option>
             <option value="low-high">Sort by Low to High</option>
             <option value="high-low">Sort by High to Low</option>
