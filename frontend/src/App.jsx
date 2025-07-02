@@ -17,6 +17,7 @@ const Login = lazy(() => import("./pages/Login"));
 const PlaceOrder = lazy(() => import("./pages/PlaceOrder"));
 const Orders = lazy(() => import("./pages/Orders"));
 const Verify = lazy(() => import("./pages/Verify"));
+const PageNotFound = lazy(() => import("./pages/PageNotFound"));
 
 //Loading spinner
 import Loader from "./components/Loader";
@@ -28,7 +29,7 @@ const LoadingWrapper = ({ children }) => {
 
   useEffect(() => {
     setIsNavigating(true);
-    const timer = setTimeout(() => setIsNavigating(false), 400);
+    const timer = setTimeout(() => setIsNavigating(false), 300);
     return () => clearTimeout(timer);
   }, [location.pathname]);
 
@@ -86,6 +87,7 @@ function App() {
             <Route path="/place-order" element={<PlaceOrder />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/verify" element={<Verify />} />
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
         </LoadingWrapper>
       </div>

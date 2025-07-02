@@ -29,7 +29,7 @@ function Contact() {
           
           <div className='flex items-center gap-4'>
             <div className='text-5xl hover:scale-110 transition-all duration-500 text-gray-800 cursor-pointer'>
-              <a href='https:github.com/vivekvvk123' target='_blank'><FaGithub /></a>
+              <a href='https://github.com/vivekvvk123' target='_blank'><FaGithub /></a>
             </div>
             <div className='text-5xl hover:scale-110 transition-all duration-500 text-gray-800 cursor-pointer'>
               <a href='https://www.linkedin.com/in/vivek-bunkar-5b07281b2' target='_blank'><FaLinkedin /></a>
