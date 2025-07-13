@@ -5,6 +5,7 @@ import { assets } from '../assets/assets'
 import { ShopContext } from '../context/ShopContext';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useEffect } from 'react';
 
 function PlaceOrder() {
 
@@ -97,7 +98,7 @@ function PlaceOrder() {
                 break;
             case 'stripe':
                 const stripeResponse = await axios.post(backendUrl + '/api/order/stripe', orderData, {headers:{token}});
-                console.log(stripeResponse.data);
+                // console.log(stripeResponse.data);
                 if(stripeResponse.data.success){
                   const {session_url} = stripeResponse.data;
                   window.location.replace(session_url);
@@ -123,12 +124,17 @@ function PlaceOrder() {
         }
 
     } catch (error) {
-      console.error("Error placing order:", error);
+      // console.error("Error placing order:", error);
+      toast.error(error.message);
     }
     finally {
       setIsLoading(false);
     }
   };
+
+  useEffect(() =>{
+    window.scrollTo(0, 0);
+  },[])
 
 
   return (

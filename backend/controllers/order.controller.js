@@ -2,6 +2,7 @@ import orderModel from "../models/order.model.js";
 import userModel from "../models/user.model.js";
 import Stripe from 'stripe';
 import razorpay from 'razorpay';
+import sendOrderConfirmationEmail from '../services/emailService.js';
 
 // global variables
 const currency = 'inr';
@@ -22,6 +23,12 @@ const razorpayInstance = new razorpay({
 const placeOrder = async (req, res) => {
     try {
         const {userId, items, amount, address} = req.body;
+        
+        // Validate required fields
+        if(!userId || !items || items.length === 0 || !amount || !address) {
+            return res.json({success: false, message: 'Missing required fields or empty cart'});
+        }
+
         const orderData = {
             userId,
             items,
@@ -36,6 +43,20 @@ const placeOrder = async (req, res) => {
         
         await userModel.findByIdAndUpdate(userId, {cartData: {}});
 
+        // Send order confirmation email
+        const emailData = {
+            userEmail: address.email,
+            userName: address.firstName,
+            orderId: newOrder._id,
+            items: items,
+            totalAmount: amount,
+            shippingAddress: address,
+            paymentMethod: 'Cash on Delivery',
+        }
+        sendOrderConfirmationEmail(emailData).catch((error) =>{
+            console.error("Error sending order confirmation email from controller", error);
+        })
+
         res.json({success: true, message: 'Order Placed'})
     }
     catch (error){
@@ -48,6 +69,12 @@ const placeOrder = async (req, res) => {
 const placeOrderStripe  = async (req, res) => {
     try{
         const {userId, items, amount, address} = req.body;
+
+        // Validate required fields
+        if(!userId || !items || items.length === 0 || !amount || !address) {
+            return res.json({success: false, message: 'Missing required fields or empty cart'});
+        }
+
         console.log(userId, items, amount, address);
         const {origin} = req.headers;
         const orderData = {
@@ -109,6 +136,21 @@ const verifyStripe = async(req,res)=>{
         if(success === 'true'){
             await orderModel.findByIdAndUpdate(orderId, {payment: true});
             await userModel.findByIdAndUpdate(userId, {cartData: {}});
+
+            // Send order confirmation email
+            const emailData = {
+                userEmail: address.email,
+                userName: address.firstName,
+                orderId: newOrder._id,
+                items: items,
+                totalAmount: amount,
+                shippingAddress: address,
+                paymentMethod: 'Stripe',
+            }
+            sendOrderConfirmationEmail(emailData).catch((error) =>{
+                console.error("Error sending order confirmation email from controller", error);
+            })
+
             res.json({success: true})
         }
         else{
@@ -129,6 +171,10 @@ const verifyStripe = async(req,res)=>{
 const placeOrderRazorpay = async (req, res) => {
     try{
         const {userId, items, amount, address} = req.body;
+        // Validate required fields
+        if(!userId || !items || items.length === 0 || !amount || !address) {
+            return res.json({success: false, message: 'Missing required fields or empty cart'});
+        }
         const orderData = {
             userId,
             items,
@@ -172,6 +218,20 @@ const verifyRazorpay = async (req,res) =>{
         if(orderInfo.status === 'paid'){
             await orderModel.findByIdAndUpdate(orderInfo.receipt, {payment: true});
             await userModel.findByIdAndUpdate(userId, {cartData: {}});
+
+            // Send order confirmation email
+            const emailData = {
+                userEmail: address.email,
+                userName: address.firstName,
+                orderId: newOrder._id,
+                items: items,
+                totalAmount: amount,
+                shippingAddress: address,
+                paymentMethod: 'Razorpay',
+            }
+            sendOrderConfirmationEmail(emailData).catch((error) =>{
+                console.error("Error sending order confirmation email from controller", error);
+            })
 
             res.json({success:true, message:"Payment Successful"})
         }else{
