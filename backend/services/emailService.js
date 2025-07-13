@@ -83,7 +83,7 @@ const sendOrderConfirmationEmail = async (orderData) =>{
 
     try{
         await sgMail.send(msg);
-        console.log('Order confirmation email sent successfully');
+        // console.log('Order confirmation email sent successfully');
         return {success: true, message: 'Email sent successfully'};
     }
     catch(error){
