@@ -2,7 +2,7 @@ import orderModel from "../models/order.model.js";
 import userModel from "../models/user.model.js";
 import Stripe from 'stripe';
 import razorpay from 'razorpay';
-import sendOrderConfirmationEmail from '../services/emailService.js';
+import {sendOrderConfirmationEmail} from '../services/emailService.js';
 
 // global variables
 const currency = 'inr';

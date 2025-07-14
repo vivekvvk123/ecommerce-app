@@ -18,6 +18,8 @@ const PlaceOrder = lazy(() => import("./pages/PlaceOrder"));
 const Orders = lazy(() => import("./pages/Orders"));
 const Verify = lazy(() => import("./pages/Verify"));
 const PageNotFound = lazy(() => import("./pages/PageNotFound"));
+const VerifyEmail = lazy(() => import("./pages/VerifyEmail"));
+const ForgotPassword = lazy(() => import("./pages/ForgotPassword"));
 
 //Loading spinner
 import Loader from "./components/Loader";
@@ -87,6 +89,8 @@ function App() {
             <Route path="/place-order" element={<PlaceOrder />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/verify" element={<Verify />} />
+            <Route path="/verify-email" element={<VerifyEmail />}/>
+            <Route path="forgot-password" element={<ForgotPassword />}/>
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </LoadingWrapper>

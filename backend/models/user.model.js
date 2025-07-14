@@ -18,7 +18,24 @@ const userSchema = new mongoose.Schema({
         type:Object,
         default: {},
     },
-}, {minimize:false});
+    isEmailVerified:{
+        type: Boolean,
+        default: false,
+    },
+    emailVerificationOTP: {
+        type: String,
+    },
+    emailVerificationExpires: {
+        type: Date,
+    },
+    resetOTP: {
+        type: String,
+    },
+    resetOTPExpires: {
+        type: Date,
+    },
+
+}, {minimize:false}); // to allow empty objects
 
 const userModel = mongoose.models.User || mongoose.model('User', userSchema);
 
